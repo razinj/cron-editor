@@ -2,6 +2,7 @@
   "name": "cron-editor",
   "version": "0.0.1",
   "author": "RAZINJ <nizarjailane@gmail.com> (https://razinj.com)",
+  "license": "ISC",
   "peerDependencies": {
     "@angular/common": "^9.1.12",
     "@angular/core": "^9.1.12"
