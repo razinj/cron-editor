@@ -1,22 +1,16 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { CronOptions } from './CronOptions';
 
+import { CronOptions } from './cronOptions';
 import { Days, MonthWeeks, Months } from './enums';
-import Utils from './Utils';
+import Utils from './utils';
 
 @Component({
-  selector: 'lib-cron-editor',
-  // template: `
-  //   <p>
-  //     cron-editor works!
-  //   </p>
-  // `,
-  templateUrl: './cron-editor.component.html',  
+  selector: 'ng-cron-editor',
+  templateUrl: './cron-editor.component.html',
   styleUrls: ['./cron-editor.component.css']
-  // styles: [
-  // ]
 })
-export class CronEditorComponent  implements OnInit, OnChanges {
+export class CronEditorComponent implements OnInit, OnChanges {
+
   @Input() public disabled: boolean;
   @Input() public options: CronOptions;
 

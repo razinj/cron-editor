@@ -1,6 +1,6 @@
 {
-  "name": "cron-editor",
-  "version": "0.0.1",
+  "name": "ng-cron-editor",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -50,12 +50,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/razinj/cron-editor.git"
+    "url": "git+https://github.com/razinj/ng-cron-editor.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/razinj/cron-editor/issues"
+    "url": "https://github.com/razinj/ng-cron-editor/issues"
   },
-  "homepage": "https://github.com/razinj/cron-editor#readme"
+  "homepage": "https://github.com/razinj/ng-cron-editor#readme"
 }
