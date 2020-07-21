@@ -95,19 +95,19 @@
             {{monthDay}}
           </option>
         </select> day(s) at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyDays'"
+        <time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyDays'"
           (change)="regenerateCron()" [(time)]="state.daily.everyDays" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>
+        </time-picker>
       </div>
       <!-- well well-small -->
       <div class="" style="margin-top: 10px;">
         <input type="radio" name="daily-radio" value="everyWeekDay" [disabled]="disabled" (change)="regenerateCron()"
           [(ngModel)]="state.daily.subTab" [ngClass]="state.formRadioClass"> Every working day at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyWeekDay'"
+        <time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyWeekDay'"
           (change)="regenerateCron()" [(time)]="state.daily.everyWeekDay" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>
+        </time-picker>
       </div>
     </div>
     <!-- Weekly-->
@@ -171,10 +171,10 @@
           <!-- col-sm-6 -->
           <div class="">
             at
-            <cron-time-picker [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+            <time-picker [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
               [(time)]="state.weekly" [selectClass]="options.formSelectClass" [use24HourTime]="options.use24HourTime"
               [hideSeconds]="options.hideSeconds">
-            </cron-time-picker>
+            </time-picker>
           </div>
         </div>
       </div>
@@ -201,10 +201,10 @@
             {{month}}
           </option>
         </select> month(s) at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
+        <time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
           (change)="regenerateCron()" [(time)]="state.monthly.specificDay" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>&nbsp;
+        </time-picker>&nbsp;
         <!-- advanced-cron-editor-label -->
         <label class=""><input type="checkbox"
             [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
@@ -249,10 +249,10 @@
           </option>
         </select>
         at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
+        <time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
           (change)="regenerateCron()" [(time)]="state.monthly.specificWeekDay" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>
+        </time-picker>
       </div>
     </div>
     <!-- Yearly-->
@@ -279,10 +279,10 @@
             {{monthDayDisplay(monthDaysWithLast)}}
           </option>
         </select> at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
+        <time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
           (change)="regenerateCron()" [(time)]="state.yearly.specificMonthDay" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>&nbsp;
+        </time-picker>&nbsp;
         <label class="advanced-cron-editor-label"><input type="checkbox" (change)="regenerateCron()"
             [(ngModel)]="state.yearly.runOnWeekday" [ngClass]="options.formCheckboxClass"> during the nearest
           weekday</label>
@@ -316,10 +316,10 @@
             {{monthDisplay(month)}}
           </option>
         </select> at
-        <cron-time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
+        <time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
           (change)="regenerateCron()" [(time)]="state.yearly.specificMonthWeek" [selectClass]="options.formSelectClass"
           [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </cron-time-picker>
+        </time-picker>
       </div>
     </div>
     <!-- Advanced-->

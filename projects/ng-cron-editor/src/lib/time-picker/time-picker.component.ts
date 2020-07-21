@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import Utils from '../utils';
 
 @Component({
-  selector: 'cron-time-picker',
+  selector: 'time-picker',
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss']
 })
