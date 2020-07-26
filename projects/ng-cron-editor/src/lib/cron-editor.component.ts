@@ -5,7 +5,7 @@ import { Months } from './helpers/enums';
 import { Days, MonthWeeks, States } from './helpers/constants';
 
 @Component({
-  selector: 'cron-editor',
+  selector: 'ng-cron-editor',
   templateUrl: './cron-editor.component.html',
   styleUrls: ['./cron-editor.component.css', './cron-editor.shared.css']
 })
