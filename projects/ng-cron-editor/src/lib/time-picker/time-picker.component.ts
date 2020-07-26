@@ -10,7 +10,7 @@ function* range(start: number, end: number) {
 @Component({
   selector: 'cron-time-picker',
   templateUrl: './time-picker.component.html',
-  styleUrls: ['../cron-editor.shared.scss']
+  styleUrls: ['../cron-editor.shared.css']
 })
 export class TimePickerComponent {
 
