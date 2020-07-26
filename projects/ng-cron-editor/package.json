@@ -1,6 +1,6 @@
 {
   "name": "ng-cron-editor",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "author": "RAZINJ <nizarjailane@gmail.com> (https://razinj.com)",
   "license": "MIT",
   "peerDependencies": {
