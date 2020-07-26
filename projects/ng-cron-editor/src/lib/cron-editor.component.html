@@ -1,338 +1,306 @@
-<div class="wrapper">
+<div [ngStyle]="customWidth">
   <!-- Tabs -->
-  <div class="tab">
-    <button class="tablinks" *ngIf="!options.hideMinutesTab" [ngClass]="{'active-tab': activeTab === 'minutes'}"
+  <div class="tabs">
+    <button *ngIf="!options.hideMinutesTab" [ngClass]="{'active-tab': activeTab === 'minutes'}"
       (click)="setActiveTab('minutes')">
       Minutes
     </button>
-    <button class="tablinks" *ngIf="!options.hideHourlyTab" [ngClass]="{'active-tab': activeTab === 'hourly'}"
+    <button *ngIf="!options.hideHourlyTab" [ngClass]="{'active-tab': activeTab === 'hourly'}"
       (click)="setActiveTab('hourly')">
       Hourly
     </button>
-    <button class="tablinks" *ngIf="!options.hideDailyTab" [ngClass]="{'active-tab': activeTab === 'daily'}"
+    <button *ngIf="!options.hideDailyTab" [ngClass]="{'active-tab': activeTab === 'daily'}"
       (click)="setActiveTab('daily')">
       Daily
     </button>
-    <button class="tablinks" *ngIf="!options.hideWeeklyTab" [ngClass]="{'active-tab': activeTab === 'weekly'}"
+    <button *ngIf="!options.hideWeeklyTab" [ngClass]="{'active-tab': activeTab === 'weekly'}"
       (click)="setActiveTab('weekly')">
       Weekly
     </button>
-    <button class="tablinks" *ngIf="!options.hideMonthlyTab" [ngClass]="{'active-tab': activeTab === 'monthly'}"
+    <button *ngIf="!options.hideMonthlyTab" [ngClass]="{'active-tab': activeTab === 'monthly'}"
       (click)="setActiveTab('monthly')">
       Monthly
     </button>
-    <button class="tablinks" *ngIf="!options.hideYearlyTab" [ngClass]="{'active-tab': activeTab === 'yearly'}"
+    <button *ngIf="!options.hideYearlyTab" [ngClass]="{'active-tab': activeTab === 'yearly'}"
       (click)="setActiveTab('yearly')">
       Yearly
     </button>
-    <button class="tablinks" *ngIf="!options.hideAdvancedTab" [ngClass]="{'active-tab': activeTab === 'yearly'}"
+    <button *ngIf="!options.hideAdvancedTab" [ngClass]="{'active-tab': activeTab === 'advanced'}"
       (click)="setActiveTab('advanced')">
       Advanced
     </button>
   </div>
-  <!-- Tab Content -->
-  <div class="content-wrapper">
+  <!-- Tab Contents -->
+  <div>
     <!-- Minutes -->
-    <div class="tabcontent" *ngIf="!options.hideMinutesTab && activeTab === 'minutes'"
-      [ngClass]="{'active-tab-content': activeTab === 'minutes'}">
-      <!-- well well-small -->
-      <div class="">
+    <div class="tab-content" *ngIf="!options.hideMinutesTab && activeTab === 'minutes'"
+      [ngClass]="{'active-tab-content': activeTab === 'minutes', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
         Every
         <select class="minutes" [disabled]="disabled || activeTab !== 'minutes'" (change)="regenerateCron()"
-          [(ngModel)]="state.minutes.minutes" [ngClass]="options.formSelectClass">
+          [(ngModel)]="state.minutes.minutes">
           <option *ngFor="let minute of selectOptions.minutes" [ngValue]="minute">
             {{minute}}
           </option>
         </select> minute(s)
-        <span *ngIf="!options.hideSeconds">on second</span>
+        <span *ngIf="!options.hideSeconds">on second </span>
         <select class="seconds" *ngIf="!options.hideSeconds" [disabled]="disabled || activeTab !== 'minutes'"
-          (change)="regenerateCron()" [(ngModel)]="state.minutes.seconds" [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.minutes.seconds">
           <option *ngFor="let second of selectOptions.seconds" [ngValue]="second">
             {{second}}
           </option>
         </select>
       </div>
     </div>
-    <!-- Hourly-->
-    <div class="tabcontent" *ngIf="!options.hideHourlyTab && activeTab === 'hourly'"
-      [ngClass]="{'active-tab-content': activeTab === 'hourly'}">
-      <!-- well well-small -->
-      <div class="">
+    <!-- Hourly -->
+    <div class="tab-content" *ngIf="!options.hideHourlyTab && activeTab === 'hourly'"
+      [ngClass]="{'active-tab-content': activeTab === 'hourly', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
         Every
         <select class="hours" [disabled]="disabled || activeTab !== 'hourly'" (change)="regenerateCron()"
-          [(ngModel)]="state.hourly.hours" [ngClass]="options.formSelectClass">
+          [(ngModel)]="state.hourly.hours">
           <option *ngFor="let hour of selectOptions.hours" [ngValue]="hour">
             {{hour}}
           </option>
         </select> hour(s) on minute
         <select class="minutes" [disabled]="disabled || activeTab !== 'hourly'" (change)="regenerateCron()"
-          [(ngModel)]="state.hourly.minutes" [ngClass]="options.formSelectClass">
+          [(ngModel)]="state.hourly.minutes">
           <option *ngFor="let minute of selectOptions.fullMinutes" [ngValue]="minute">
             {{minute}}
           </option>
         </select>
-        <span *ngIf="!options.hideSeconds">and second</span>
+        <span *ngIf="!options.hideSeconds"> and second </span>
         <select class="seconds" *ngIf="!options.hideSeconds" [disabled]="disabled || activeTab !== 'hourly'"
-          (change)="regenerateCron()" [(ngModel)]="state.hourly.seconds" [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.hourly.seconds">
           <option *ngFor="let second of selectOptions.seconds" [ngValue]="second">
             {{second}}
           </option>
         </select>
       </div>
     </div>
-    <!-- Daily-->
-    <div class="tabcontent" *ngIf="!options.hideDailyTab && activeTab === 'daily'"
-      [ngClass]="{'active-tab-content': activeTab === 'daily'}">
-      <!-- well well-small -->
-      <div class="">
+    <!-- Daily -->
+    <div class="tab-content" *ngIf="!options.hideDailyTab && activeTab === 'daily'"
+      [ngClass]="{'active-tab-content': activeTab === 'daily', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
         <input type="radio" name="daily-radio" value="everyDays" [disabled]="disabled" (change)="regenerateCron()"
           [(ngModel)]="state.daily.subTab" value="everyDays" [disabled]="disabled" (change)="regenerateCron()"
           [(ngModel)]="state.daily.subTab" [ngClass]="state.formRadioClass" checked="checked">
         Every
         <select class="days" [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyDays'"
-          (change)="regenerateCron()" [(ngModel)]="state.daily.everyDays.days" [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.daily.everyDays.days">
           <option *ngFor="let monthDay of selectOptions.monthDays" [ngValue]="monthDay">
             {{monthDay}}
           </option>
         </select> day(s) at
-        <time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyDays'"
-          (change)="regenerateCron()" [(time)]="state.daily.everyDays" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyDays'"
+          (change)="regenerateCron()" [(time)]="state.daily.everyDays" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
-      <!-- well well-small -->
-      <div class="" style="margin-top: 10px;">
+      <div style="margin-top: 10px;">
         <input type="radio" name="daily-radio" value="everyWeekDay" [disabled]="disabled" (change)="regenerateCron()"
           [(ngModel)]="state.daily.subTab" [ngClass]="state.formRadioClass"> Every working day at
-        <time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyWeekDay'"
-          (change)="regenerateCron()" [(time)]="state.daily.everyWeekDay" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'daily' || state.daily.subTab !== 'everyWeekDay'"
+          (change)="regenerateCron()" [(time)]="state.daily.everyWeekDay" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
     </div>
-    <!-- Weekly-->
-    <div class="tabcontent" *ngIf="!options.hideWeeklyTab && activeTab === 'weekly'"
-      [ngClass]="{'active-tab-content': activeTab === 'weekly'}">
-      <!-- well well-small -->
-      <div class="">
-        <div class="row">
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.MON" [ngClass]="options.formCheckboxClass">
-              Monday</label>
+    <!-- Weekly -->
+    <div class="tab-content" *ngIf="!options.hideWeeklyTab && activeTab === 'weekly'"
+      [ngClass]="{'active-tab-content': activeTab === 'weekly', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
+        <div class="weekly-checkbox-wrapper">
+          <div class="weekly-checkbox-left-side-wrapper">
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.MON">
+                <span class="custom-checkbox"></span>
+                Monday</label>
+            </span>
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.TUE">
+                <span class="custom-checkbox"></span>
+                Tuesday</label>
+            </span>
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.WED">
+                <span class="custom-checkbox"></span>
+                Wednesday</label>
+            </span>
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.THU">
+                <span class="custom-checkbox"></span>
+                Thursday</label>
+            </span>
           </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.TUE" [ngClass]="options.formCheckboxClass">
-              Tuesday</label>
-          </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.WED" [ngClass]="options.formCheckboxClass">
-              Wednesday</label>
-          </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.THU" [ngClass]="options.formCheckboxClass">
-              Thursday</label>
-          </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.FRI" [ngClass]="options.formCheckboxClass">
-              Friday</label>
-          </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.SAT" [ngClass]="options.formCheckboxClass">
-              Saturday</label>
-          </div>
-          <!-- col-sm-6 -->
-          <div class="">
-            <!-- advanced-cron-editor-label -->
-            <label class=""><input type="checkbox" [disabled]="disabled || activeTab !== 'weekly'"
-                (change)="regenerateCron()" [(ngModel)]="state.weekly.SUN" [ngClass]="options.formCheckboxClass">
-              Sunday</label>
+          <div class="weekly-checkbox-right-side-wrapper">
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.FRI">
+                <span class="custom-checkbox"></span>
+                Friday</label>
+            </span>
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.SAT">
+                <span class="custom-checkbox"></span>
+                Saturday</label>
+            </span>
+            <span class="weekly-checkbox">
+              <label class="custom-checkbox-label"><input class="checkbox" type="checkbox"
+                  [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+                  [(ngModel)]="state.weekly.SUN">
+                <span class="custom-checkbox"></span>
+                Sunday</label>
+            </span>
           </div>
         </div>
-        <!-- row -->
-        <div class="">
-          <!-- col-sm-6 -->
-          <div class="">
-            at
-            <time-picker [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
-              [(time)]="state.weekly" [selectClass]="options.formSelectClass" [use24HourTime]="options.use24HourTime"
-              [hideSeconds]="options.hideSeconds">
-            </time-picker>
-          </div>
+        <div>
+          at
+          <cron-time-picker [disabled]="disabled || activeTab !== 'weekly'" (change)="regenerateCron()"
+            [(time)]="state.weekly" [hideSeconds]="options.hideSeconds">
+          </cron-time-picker>
         </div>
       </div>
     </div>
-    <!-- Monthly-->
-    <div class="tabcontent" *ngIf="!options.hideMonthlyTab && activeTab === 'monthly'"
-      [ngClass]="{'active-tab-content': activeTab === 'monthly'}">
-      <!-- well well-small -->
-      <div class="">
+    <!-- Monthly -->
+    <div class="tab-content" *ngIf="!options.hideMonthlyTab && activeTab === 'monthly'"
+      [ngClass]="{'active-tab-content': activeTab === 'monthly', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
         <input type="radio" name="monthly-radio" value="specificDay" [disabled]="disabled" (change)="regenerateCron()"
           [(ngModel)]="state.monthly.subTab" [ngClass]="state.formRadioClass"> On the
         <select class="month-days"
           [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificDay.day" [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificDay.day">
           <option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [ngValue]="monthDaysWithLast">
             {{monthDayDisplay(monthDaysWithLast)}}
           </option>
         </select> of every
         <select class="months-small"
           [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificDay.months"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificDay.months">
           <option *ngFor="let month of selectOptions.months" [ngValue]="month">
             {{month}}
           </option>
         </select> month(s) at
-        <time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
-          (change)="regenerateCron()" [(time)]="state.monthly.specificDay" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>&nbsp;
-        <!-- advanced-cron-editor-label -->
-        <label class=""><input type="checkbox"
-            [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
-            (change)="regenerateCron()" [(ngModel)]="state.monthly.runOnWeekday" [ngClass]="options.formCheckboxClass">
-          during the nearest weekday</label>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificDay'"
+          (change)="regenerateCron()" [(time)]="state.monthly.specificDay" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
-      <!-- well well-small -->
-      <div class="">
+      <br>
+      <div>
         <input type="radio" name="monthly-radio" value="specificWeekDay" [disabled]="disabled"
           (change)="regenerateCron()" [(ngModel)]="state.monthly.subTab" [ngClass]="state.formRadioClass">
         On the
         <select class="day-order-in-month"
           [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.monthWeek"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.monthWeek">
           <option *ngFor="let monthWeek of selectOptions.monthWeeks" [ngValue]="monthWeek">
             {{monthWeekDisplay(monthWeek)}}
           </option>
         </select>
-        <select class="week-days"
-          [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.day"
-          [ngClass]="options.formSelectClass">
+        &nbsp;
+        <select [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.day">
           <option *ngFor="let day of selectOptions.days" [ngValue]="day">
             {{dayDisplay(day)}}
           </option>
         </select> of every
         <select class="months-small"
           [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.months"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.months">
           <option *ngFor="let month of selectOptions.months" [ngValue]="month">
             {{month}}
           </option>
         </select> month(s) starting in
         <select class="months"
           [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.startMonth"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.monthly.specificWeekDay.startMonth">
           <option *ngFor="let month of selectOptions.months" [ngValue]="month">
             {{monthDisplay(month)}}
           </option>
         </select>
         at
-        <time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
-          (change)="regenerateCron()" [(time)]="state.monthly.specificWeekDay" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'monthly' || state.monthly.subTab !== 'specificWeekDay'"
+          (change)="regenerateCron()" [(time)]="state.monthly.specificWeekDay" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
     </div>
-    <!-- Yearly-->
-    <div class="tabcontent" *ngIf="!options.hideYearlyTab && activeTab === 'yearly'"
-      [ngClass]="{'active-tab-content': activeTab === 'yearly'}">
-      <!-- well well-small -->
-      <div class="">
+    <!-- Yearly -->
+    <div class="tab-content" *ngIf="!options.hideYearlyTab && activeTab === 'yearly'"
+      [ngClass]="{'active-tab-content': activeTab === 'yearly', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <div>
         <input type="radio" name="yearly-radio" value="specificMonthDay" [disabled]="disabled"
           (change)="regenerateCron()" [(ngModel)]="state.yearly.subTab" [ngClass]="state.formRadioClass">
         Every
         <select class="months"
           [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthDay.month"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthDay.month">
           <option *ngFor="let month of selectOptions.months" [ngValue]="month">
             {{monthDisplay(month)}}
           </option>
         </select> on the
         <select class="month-days"
           [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
-          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthDay.day"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthDay.day">
           <option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [ngValue]="monthDaysWithLast">
             {{monthDayDisplay(monthDaysWithLast)}}
           </option>
         </select> at
-        <time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
-          (change)="regenerateCron()" [(time)]="state.yearly.specificMonthDay" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>&nbsp;
-        <label class="advanced-cron-editor-label"><input type="checkbox" (change)="regenerateCron()"
-            [(ngModel)]="state.yearly.runOnWeekday" [ngClass]="options.formCheckboxClass"> during the nearest
-          weekday</label>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthDay'"
+          (change)="regenerateCron()" [(time)]="state.yearly.specificMonthDay" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
-      <!-- well well-small -->
-      <div class="">
+      <br>
+      <div>
         <input type="radio" name="yearly-radio" value="specificMonthWeek" [disabled]="disabled"
           (change)="regenerateCron()" [(ngModel)]="state.yearly.subTab" [ngClass]="state.formRadioClass">
         On the
         <select class="day-order-in-month"
           [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
-          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.monthWeek"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.monthWeek">
           <option *ngFor="let monthWeek of selectOptions.monthWeeks" [ngValue]="monthWeek">
             {{monthWeekDisplay(monthWeek)}}
           </option>
         </select>
-        <select class="week-days"
-          [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
-          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.day"
-          [ngClass]="options.formSelectClass">
+        &nbsp;
+        <select [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
+          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.day">
           <option *ngFor="let day of selectOptions.days" [ngValue]="day">
             {{dayDisplay(day)}}
           </option>
         </select> of
         <select class="months"
           [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
-          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.month"
-          [ngClass]="options.formSelectClass">
+          (change)="regenerateCron()" [(ngModel)]="state.yearly.specificMonthWeek.month">
           <option *ngFor="let month of selectOptions.months" [ngValue]="month">
             {{monthDisplay(month)}}
           </option>
         </select> at
-        <time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
-          (change)="regenerateCron()" [(time)]="state.yearly.specificMonthWeek" [selectClass]="options.formSelectClass"
-          [use24HourTime]="options.use24HourTime" [hideSeconds]="options.hideSeconds">
-        </time-picker>
+        <cron-time-picker [disabled]="disabled || activeTab !== 'yearly' || state.yearly.subTab !== 'specificMonthWeek'"
+          (change)="regenerateCron()" [(time)]="state.yearly.specificMonthWeek" [hideSeconds]="options.hideSeconds">
+        </cron-time-picker>
       </div>
     </div>
-    <!-- Advanced-->
-    <div class="tabcontent" *ngIf="!options.hideAdvancedTab && activeTab === 'advanced'"
-      [ngClass]="{'active-tab-content': activeTab === 'advanced'}">
-      Cron Expression
-      <input type="text" class="advanced-cron-editor-input" ng-disabled="disabled || activeTab !== 'advanced'"
-        (change)="regenerateCron()" [(ngModel)]="state.advanced.expression" [ngClass]="options.formInputClass">
+    <!-- Advanced -->
+    <div class="tab-content" *ngIf="!options.hideAdvancedTab && activeTab === 'advanced'"
+      [ngClass]="{'active-tab-content': activeTab === 'advanced', 'error-displayed': activeTab != null && !state.validation.isValid}">
+      <span>Cron expression : </span>
+      <input type="text" ng-disabled="disabled || activeTab !== 'advanced'" (change)="regenerateCron()"
+        [(ngModel)]="state.advanced.expression">
     </div>
-
-  </div>
-  <!-- Error -->
-  <div class="row" *ngIf="!state.validation.isValid">
-    <code>{{state.validation.errorMessage}}</code>
+    <!-- Error message -->
+    <div class="tab-content" *ngIf="!state.validation.isValid">
+      <span class="error-header">Error : </span>
+      <code>{{state.validation.errorMessage}}</code>
+    </div>
   </div>
 </div>

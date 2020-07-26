@@ -1,25 +1,16 @@
-<div style="margin-top: 5px;">
+<span>
   <!-- hour -->
-  <select class="timeFormControl" (change)="change.emit()" [(ngModel)]="time.hours" [disabled]="disabled"
-    [ngClass]="selectClass">
+  <select [(ngModel)]="time.hours" [disabled]="disabled">
     <option *ngFor="let hour of hours" [ngValue]="hour">{{hour}}</option>
   </select>
-
+  <span>&nbsp;:&nbsp;</span>
   <!-- minute -->
-  <select class="timeFormControl" (change)="change.emit()" [(ngModel)]="time.minutes" [disabled]="disabled"
-    [ngClass]="selectClass">
+  <select [(ngModel)]="time.minutes" [disabled]="disabled">
     <option *ngFor="let minute of minutes" [ngValue]="minute">{{minute}}</option>
   </select>
-
+  <span *ngIf="!hideSeconds">&nbsp;:&nbsp;</span>
   <!-- second -->
-  <select class="timeFormControl" (change)="change.emit()" [(ngModel)]="time.seconds" [disabled]="disabled"
-    *ngIf="!hideSeconds" [ngClass]="selectClass">
+  <select [(ngModel)]="time.seconds" [disabled]="disabled" *ngIf="!hideSeconds">
     <option *ngFor="let second of seconds" [ngValue]="second">{{second}}</option>
   </select>
-
-  <!-- am/pm -->
-  <select class="timeFormControl" (change)="change.emit()" [(ngModel)]="time.hourTypes" [disabled]="disabled"
-    *ngIf="!use24HourTime" [ngClass]="selectClass">
-    <option *ngFor="let hourType of hourTypes" [ngValue]="hourType">{{hourType}}</option>
-  </select>
-</div>
+</span>

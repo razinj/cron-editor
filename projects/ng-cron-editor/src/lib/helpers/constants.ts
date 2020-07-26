@@ -6,7 +6,7 @@ export const Days = {
   'THU': 'Thursday',
   'FRI': 'Friday',
   'SAT': 'Saturday'
-};
+}
 
 export const MonthWeeks = {
   '#1': 'First',
@@ -15,19 +15,10 @@ export const MonthWeeks = {
   '#4': 'Fourth',
   '#5': 'Fifth',
   'L': 'Last'
-};
+}
 
-export enum Months {
-  January = 1,
-  February,
-  March,
-  April,
-  May,
-  June,
-  July,
-  August,
-  September,
-  October,
-  November,
-  December
+export const States = {
+  INIT: 1,
+  DIRTY: 2,
+  CLEAN: 3,
 }

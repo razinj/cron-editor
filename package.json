@@ -1,6 +1,6 @@
 {
   "name": "ng-cron-editor",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -46,14 +46,14 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.",
+  "description": "Quartz cron editor component built for Angular 2+ apps.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/razinj/ng-cron-editor.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "RAZINJ <nizarjailane@gmail.com> (https://razinj.com)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/razinj/ng-cron-editor/issues"
   },
