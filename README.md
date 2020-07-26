@@ -1,6 +1,6 @@
 # ng-cron-editor
 
-This package is intended to generate Quartz based cron expressions, and it's based on this [unmaintained]('https://github.com/claudiuconstantin/cron-editor) which the logic is not updated for a while (aslo the package uses a bootstrap style), what I offer is an optimized lightweight version of that package with zero styling dependency.
+This package is intended to generate Quartz based cron expressions, and it's based on this [unmaintained]('https://github.com/claudiuconstantin/cron-editor') which the logic is not updated for a while (aslo the package uses a bootstrap style), what I offer is an optimized lightweight version of that package with zero styling dependency.
 
 ## Documentation
 
